@@ -14,12 +14,13 @@ spec:
     spec:
       containers:
         - name: sinatra-server
-          image: 290668651550.dkr.ecr.us-east-1.amazonaws.com/sinatra-ruby:1.0.0
+          image: 722251181399.dkr.ecr.us-east-2.amazonaws.com/sinatra-ruby:1.0.0
           imagePullPolicy: Always
           command: ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "8080"]
           env:
             - name: SUPERSECRETACCESSKEY
-              value: "foo"
+              # Changed to correct value
+              value: "HTTP_SUPERSECRETACCESSKEY"
           ports:
             - name: http-port
               containerPort: 8080

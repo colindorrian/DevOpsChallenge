@@ -8,10 +8,12 @@ spec:
       image: curlimages/curl
       command: ["/bin/sh","-c"]
       args:
-        - sleep 5; watch -n 10 "curl -H '$SUPERSECRETHEADER' sinatra-service"
+        # added | tee /opt/curlresult so I could more easily test
+        - sleep 5; watch -n 10 "curl -H '$SUPERSECRETHEADER' sinatra-service" | tee /opt/curlresult
       tty: true
       env:
         - name: SUPERSECRETHEADER
-          value: "SUPERSECRETACCESSKEY: foob"
+          # Changed to correct value
+          value: "SUPERSECRETACCESSKEY: HTTP_SUPERSECRETACCESSKEY"
   nodeSelector:
     type: client
